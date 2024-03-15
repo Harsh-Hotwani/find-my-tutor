@@ -16,7 +16,15 @@ class Registration1 : AppCompatActivity() {
         supportActionBar!!.hide()
 
         binding.button3.setOnClickListener{
-            startActivity(Intent(this,Registration2::class.java))
+            val email = binding.editTextTextEmailAddress2.text.toString()
+            val password = binding.editTextTextPassword.text.toString()
+            val phoneNumber = binding.editTextPhone.text.toString()
+            val intent = Intent(this, Registration2::class.java).apply {
+                putExtra("email", email)
+                putExtra("password", password)
+                putExtra("phone_number", phoneNumber)
+            }
+            startActivity(intent)
         }
     }
 }
