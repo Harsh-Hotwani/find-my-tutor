@@ -87,7 +87,7 @@ class Registration3 : AppCompatActivity() {
             val subjecto = binding.subjectOfInterest.text.toString()
             val platform = binding.tutorFormat.text.toString()
             val additionalinfo = binding.editTextAddInfo.text.toString()
-                if (education.isNotBlank() && subjecto.isNotBlank() && platform.isNotBlank() && additionalinfo.isNotBlank()) {
+                if (education.isNotBlank() && subjecto.isNotBlank() && platform.isNotBlank()) {
                     if (email != null && password != null && phoneNumber != null && location != null && role != null) {
                         registerUser(
                             email,
@@ -136,6 +136,10 @@ class Registration3 : AppCompatActivity() {
                         userData["platform"] = platform
                         userData["additionalInfo"] = additionalinfo
 
+                        if(role=="student")
+                        {
+
+                        }
                         usersRef.child(role).child(userId).setValue(userData).addOnSuccessListener {
                             Toast.makeText(this, "Registration successful", Toast.LENGTH_SHORT).show()
                             // Redirect to next activity or perform other actions
