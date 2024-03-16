@@ -84,11 +84,9 @@ class Registration3 : AppCompatActivity() {
 
         binding.finalSubmit.setOnClickListener{
             val education = binding.selectEdu.text.toString()
-            val subjecto = binding.subjectOfInterest.toString()
-            val platform = binding.tutorFormat.toString()
+            val subjecto = binding.subjectOfInterest.text.toString()
+            val platform = binding.tutorFormat.text.toString()
             val additionalinfo = binding.editTextAddInfo.text.toString()
-
-
                 if (education.isNotBlank() && subjecto.isNotBlank() && platform.isNotBlank() && additionalinfo.isNotBlank()) {
                     if (email != null && password != null && phoneNumber != null && location != null && role != null) {
                         registerUser(
