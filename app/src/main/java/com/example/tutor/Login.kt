@@ -23,7 +23,7 @@ class Login : AppCompatActivity() {
         }
         binding.loginbutton.setOnClickListener{
             Toast.makeText(this, "heloow waiting?", Toast.LENGTH_SHORT).show()
-            startActivity(Intent(this,Registration1::class.java))
+            startActivity(Intent(this,MainActivity::class.java))
         }
     }
 }

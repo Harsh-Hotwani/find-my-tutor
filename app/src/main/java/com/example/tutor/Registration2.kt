@@ -1,5 +1,6 @@
 package com.example.tutor
 
+import android.R
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.tutor.databinding.ActivityRegistration1Binding
 import com.example.tutor.databinding.ActivityRegistration2Binding
+
 
 class Registration2 : AppCompatActivity() {
     private val binding:ActivityRegistration2Binding by lazy {
@@ -25,12 +27,12 @@ class Registration2 : AppCompatActivity() {
         supportActionBar!!.hide()
 
         val locationList = arrayOf("indore","bhopal","gwalior","jabalpur")
-        val adapter = ArrayAdapter(this,android.R.layout.simple_list_item_1,locationList)
+        val adapter = ArrayAdapter(this, R.layout.simple_list_item_1,locationList)
         val autoCompleteTextView = binding.listoflocation
         autoCompleteTextView.setAdapter(adapter)
 
         val roleList = arrayOf("student","teacher")
-        val adapterRole = ArrayAdapter(this,android.R.layout.simple_list_item_1,roleList)
+        val adapterRole = ArrayAdapter(this, R.layout.simple_list_item_1,roleList)
         val autoCompleteTextViewRole = binding.selectRole
         autoCompleteTextViewRole.setAdapter(adapterRole)
 
