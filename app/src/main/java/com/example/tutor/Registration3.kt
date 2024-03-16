@@ -7,8 +7,17 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.example.tutor.databinding.ActivityRegistration2Binding
 import com.example.tutor.databinding.ActivityRegistration3Binding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class Registration3 : AppCompatActivity() {
+
+    private lateinit var auth:FirebaseAuth
+    private lateinit var database: FirebaseDatabase
+    private lateinit var usersRef: DatabaseReference
+
+
     private val binding: ActivityRegistration3Binding by lazy {
         ActivityRegistration3Binding.inflate(layoutInflater)
     }
@@ -17,6 +26,12 @@ class Registration3 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         supportActionBar!!.hide()
+
+        auth=FirebaseAuth.getInstance()
+        database = FirebaseDatabase.getInstance()
+        usersRef = database.reference.child("users")
+
+
 
         val email = intent.getStringExtra("email")
         val password = intent.getStringExtra("password")
@@ -72,11 +87,70 @@ class Registration3 : AppCompatActivity() {
             val subjecto = binding.subjectOfInterest.toString()
             val platform = binding.tutorFormat.toString()
             val additionalinfo = binding.editTextAddInfo.text.toString()
-            val data = "Email: $email\nPassword: $password\nPhone Number: $phoneNumber\nLocation: $location\nRole: $role\neducation: $education"
-            Toast.makeText(this, data, Toast.LENGTH_SHORT).show()
-        }
-        // firebase registration
-        
 
+
+                if (education.isNotBlank() && subjecto.isNotBlank() && platform.isNotBlank() && additionalinfo.isNotBlank()) {
+                    if (email != null && password != null && phoneNumber != null && location != null && role != null) {
+                        registerUser(
+                            email,
+                            password,
+                            phoneNumber,
+                            location,
+                            role,
+                            education,
+                            subjecto,
+                            platform,
+                            additionalinfo
+                        )
+                    }
+                }else {
+                    Toast.makeText(this, "please enter sufficient data", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+        }
+
+    private fun registerUser(
+        email: String?,
+        password: String?,
+        phoneNumber: String,
+        location: String,
+        role: String,
+        education: String,
+        subjecto: String,
+        platform: String,
+        additionalinfo: String
+    ) {
+        if (password != null && email != null) {
+                auth.createUserWithEmailAndPassword(email , password).addOnCompleteListener {task->
+                    if(task.isSuccessful){
+                        val user = auth.currentUser
+                        val userId = user?.uid ?: ""
+                        val userEmail = user?.email ?: ""
+
+                        val userData = HashMap<String, Any>()
+                        userData["email"] = userEmail
+                        userData["education"] = education
+                        userData["location"] = location ?: ""
+                        userData["phoneNumber"] = phoneNumber ?: ""
+                        userData["role"] = role ?: ""
+                        userData["subjectOfInterest"] = subjecto
+                        userData["platform"] = platform
+                        userData["additionalInfo"] = additionalinfo
+
+                        usersRef.child(role).child(userId).setValue(userData).addOnSuccessListener {
+                            Toast.makeText(this, "Registration successful", Toast.LENGTH_SHORT).show()
+                            // Redirect to next activity or perform other actions
+                        }.addOnFailureListener {
+                            Toast.makeText(this, "Failed to save user data", Toast.LENGTH_SHORT).show()
+                        }
+                    } else {
+                        Toast.makeText(this, "Registration failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                    }
+
+
+                    }
+                }
+
+        }
     }
-}

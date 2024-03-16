@@ -32,7 +32,7 @@ class Registration2 : AppCompatActivity() {
         val password = intent.getStringExtra("password")
         val phoneNumber = intent.getStringExtra("phone_number")
 
-       binding.next2.setOnClickListener{
+       binding.next2.setOnClickListener {
 
            val location = binding.listoflocation.text.toString()
            val role = binding.selectRole.text.toString()
@@ -42,14 +42,21 @@ class Registration2 : AppCompatActivity() {
 //           Toast.makeText(this, combinedData, Toast.LENGTH_SHORT).show()
 //            // Start the next activity or save the data to database
 //            // For example:
-            val intent = Intent(this,Registration3::class.java).apply {
-                putExtra("email", email)
-                putExtra("password", password)
-                putExtra("phone_number", phoneNumber)
-                putExtra("location",location)
-                putExtra("role",role)
-            }
-           startActivity(intent)
-        }
+           if (location.isNotBlank() && role.isNotBlank()) {
+               val intent = Intent(this, Registration3::class.java).apply {
+                   putExtra("email", email)
+                   putExtra("password", password)
+                   putExtra("phone_number", phoneNumber)
+                   putExtra("location", location)
+                   putExtra("role", role)
+               }
+               startActivity(intent)
+           }
+           else
+           {
+               Toast.makeText(this, "please enter sufficient details", Toast.LENGTH_SHORT).show()
+           }
+       }
+
     }
 }
