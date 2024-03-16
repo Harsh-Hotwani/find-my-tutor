@@ -162,7 +162,7 @@ class Registration3 : AppCompatActivity() {
                                     "imageUrl" to imageUrl
                                 )
 
-                                usersRef.child(role).setValue(userData).addOnSuccessListener {
+                                usersRef.child(role).child(userId).setValue(userData).addOnSuccessListener {
                                     Toast.makeText(this, "Registration successful", Toast.LENGTH_SHORT).show()
                                     // Redirect to next activity or perform other actions
                                 }.addOnFailureListener {
