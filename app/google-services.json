@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "589507979871",
+    "project_id": "find-my-totur",
+    "storage_bucket": "find-my-totur.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:589507979871:android:240ebbb9e38a4906d709ea",
+        "android_client_info": {
+          "package_name": "com.example.tutor"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHaTmwTbV0WBUMra75R_JZkVQy-10PMy0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
