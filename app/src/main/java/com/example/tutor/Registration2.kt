@@ -1,11 +1,14 @@
 package com.example.tutor
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Toast
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.example.tutor.databinding.ActivityRegistration1Binding
 import com.example.tutor.databinding.ActivityRegistration2Binding
 
@@ -13,6 +16,9 @@ class Registration2 : AppCompatActivity() {
     private val binding:ActivityRegistration2Binding by lazy {
         ActivityRegistration2Binding.inflate(layoutInflater)
     }
+
+    private var PICK_IMAGE_REQUEST=1
+    private var imageuri: Uri? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -49,6 +55,7 @@ class Registration2 : AppCompatActivity() {
                    putExtra("phone_number", phoneNumber)
                    putExtra("location", location)
                    putExtra("role", role)
+                   putExtra("image_uri", imageuri?.toString())
                }
                startActivity(intent)
            }
@@ -58,5 +65,25 @@ class Registration2 : AppCompatActivity() {
            }
        }
 
+        binding.cardView.setOnClickListener{
+            val intent = Intent()
+            intent.type="image/*"
+            intent.action=Intent.ACTION_GET_CONTENT
+            startActivityForResult(
+                Intent.createChooser(intent , "select a image"),
+                PICK_IMAGE_REQUEST
+            )
+        }
+
+    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode==PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data!=null && data.data!=null) {
+            imageuri = data.data
+            Glide.with(this)
+                .load(imageuri)
+                .apply(RequestOptions.circleCropTransform())
+                .into(binding.registerImage)
+        }
     }
 }
