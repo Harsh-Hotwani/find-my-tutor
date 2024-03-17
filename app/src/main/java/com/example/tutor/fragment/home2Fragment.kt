@@ -12,6 +12,8 @@ import com.example.tutor.PopularAdapter
 
 import com.example.tutor.R
 import com.example.tutor.databinding.FragmentHome2Binding
+import com.example.tutor.databinding.FragmentMenuBottomSheetBinding
+import com.example.tutor.menuBottomSheetFragment
 
 
 class home2Fragment : Fragment() {
@@ -30,6 +32,12 @@ class home2Fragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentHome2Binding.inflate(inflater,container,false)
+
+        binding.viewAllClick.setOnClickListener {
+            val bottomSheetDialog = menuBottomSheetFragment()
+            bottomSheetDialog.show(parentFragmentManager,"Test")
+        }
+
         return binding.root
 
 
