@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
+
 import com.example.tutor.R
 import com.example.tutor.databinding.FragmentHome2Binding
 
