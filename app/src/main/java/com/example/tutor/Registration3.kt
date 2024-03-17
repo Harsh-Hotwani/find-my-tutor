@@ -43,6 +43,7 @@ class Registration3 : AppCompatActivity() {
         val email = intent.getStringExtra("email")
         val password = intent.getStringExtra("password")
         val phoneNumber = intent.getStringExtra("phone_number")
+        val name = intent.getStringExtra("name")
         val location = intent.getStringExtra("location")
         val role = intent.getStringExtra("role")
         val imageUri = intent.getStringExtra("image_uri")
@@ -101,12 +102,13 @@ class Registration3 : AppCompatActivity() {
             val platform = binding.tutorFormat.text.toString()
             val additionalinfo = binding.editTextAddInfo.text.toString()
             if (education.isNotBlank() && subjecto.isNotBlank() && platform.isNotBlank()) {
-                if (email != null && password != null && phoneNumber != null && location != null && role != null && imageUri!=null) {
+                if (email != null && password != null && phoneNumber != null && name!=null && location != null && role != null && imageUri!=null) {
                     val uri = Uri.parse(imageUri)
                     registerUser(
                         email,
                         password,
                         phoneNumber,
+                        name,
                         location,
                         role,
                         education,
@@ -127,6 +129,7 @@ class Registration3 : AppCompatActivity() {
         email: String,
         password: String,
         phoneNumber: String,
+        name : String,
         location: String,
         role: String,
         education: String,
@@ -155,6 +158,7 @@ class Registration3 : AppCompatActivity() {
                                     "education" to education,
                                     "location" to location,
                                     "phoneNumber" to phoneNumber,
+                                    "name" to name,
                                     "role" to role,
                                     "subjectOfInterest" to subjecto,
                                     "platform" to platform,

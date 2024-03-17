@@ -39,6 +39,7 @@ class Registration2 : AppCompatActivity() {
         val email = intent.getStringExtra("email")
         val password = intent.getStringExtra("password")
         val phoneNumber = intent.getStringExtra("phone_number")
+        val name = intent.getStringExtra("name")
 
        binding.next2.setOnClickListener {
 
@@ -55,6 +56,7 @@ class Registration2 : AppCompatActivity() {
                    putExtra("email", email)
                    putExtra("password", password)
                    putExtra("phone_number", phoneNumber)
+                   putExtra("name",name)
                    putExtra("location", location)
                    putExtra("role", role)
                    putExtra("image_uri", imageuri?.toString())
