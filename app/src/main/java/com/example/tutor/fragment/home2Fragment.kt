@@ -5,8 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
+import com.example.tutor.PopularAdapter
 
 import com.example.tutor.R
 import com.example.tutor.databinding.FragmentHome2Binding
@@ -48,8 +50,16 @@ class home2Fragment : Fragment() {
         imageSlider.setImageList(imageList)
         imageSlider.setImageList(imageList,ScaleTypes.FIT)
 
-    }
 
+
+        val facultyName = listOf("aman","gourav","kuldeep","atharv")
+        val education = listOf("b","c","d","e")
+        val facultyImages = listOf(R.drawable.banner1,R.drawable.banner1,R.drawable.banner1,R.drawable.banner1)
+
+        val adapter = PopularAdapter(facultyName,education,facultyImages)
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerView.adapter = adapter
+    }
     companion object {
 
     }

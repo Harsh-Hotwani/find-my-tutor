@@ -7,7 +7,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="323dp"
-        android:layout_height="87dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         app:cardCornerRadius="22dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -18,7 +18,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:elevation="10dp">
 
             <ImageView
