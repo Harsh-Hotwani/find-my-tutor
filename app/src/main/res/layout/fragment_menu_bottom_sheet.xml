@@ -4,19 +4,31 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:gravity="center"
+    android:background="@color/white"
     tools:context=".menuBottomSheetFragment">
 
     <!-- TODO: Update blank fragment layout -->
+    <ImageButton
+        android:id="@+id/buttonBack"
+        android:layout_marginTop="9dp"
+        android:layout_marginLeft="9dp"
+        android:layout_width="24dp"
+        android:layout_height="27dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/icon" />
+
+
+
     <TextView
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        android:textSize="24sp"
-        android:textColor="@color/endtcolor"
-        android:fontFamily="sans-serif"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Information" />
+        android:layout_marginTop="8dp"
+        android:background="@android:color/transparent"
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:text="Information"
+        android:textColor="@color/endtcolor"
+        android:textSize="24sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/menuRecyclerView"

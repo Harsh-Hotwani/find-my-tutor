@@ -10,5 +10,6 @@
     <color name="blue">#2258CF</color>
     <color name="startcolor">#53E88B</color>
     <color name="endtcolor">#15BE77</color>
+    <color name="iconcolor">#FEAD1D</color>
 
 </resources>
